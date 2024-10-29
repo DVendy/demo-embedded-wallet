@@ -9,8 +9,8 @@ import { Loader } from "lucide-react"
 import { Card, CardHeader, CardTitle } from "@/components/ui/card"
 import { Icons } from "@/components/icons"
 
-import { verifierSegmentToChallenge } from "../../../../lib/facebook-utils"
-import { exchangeToken } from "./exchange-token"
+import { exchangeToken } from "../../../../actions/turnkey"
+import { nonceToVerifier } from "../../../../lib/facebook-utils"
 
 function FacebookProcessCallback() {
   const searchParams = useSearchParams()
@@ -25,7 +25,7 @@ function FacebookProcessCallback() {
   const router = useRouter()
 
   const getToken = async () => {
-    const verifier = await verifierSegmentToChallenge(storedState || "")
+    const verifier = await nonceToVerifier(storedState || "")
     const token = await exchangeToken(storedCode || "", verifier)
 
     return token
