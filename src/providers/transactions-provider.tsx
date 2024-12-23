@@ -21,15 +21,15 @@ type TransactionsState = {
 
 type TransactionsAction =
   | {
-      type: "SET_TRANSACTIONS"
-      payload: { address: Address; transactions: Transaction[] }
-    }
+    type: "SET_TRANSACTIONS"
+    payload: { address: Address; transactions: Transaction[] }
+  }
   | { type: "SET_FETCHING_TRANSACTIONS" }
   | { type: "SET_ERROR"; payload: string }
   | {
-      type: "ADD_TRANSACTION"
-      payload: { address: Address; transaction: Transaction }
-    }
+    type: "ADD_TRANSACTION"
+    payload: { address: Address; transaction: Transaction }
+  }
 
 type TransactionsContextType = TransactionsState & {
   addPendingTransaction: (

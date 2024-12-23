@@ -95,7 +95,7 @@ function AuthContent() {
         </CardHeader>
         <CardContent className="space-y-4">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(() => {})} className="space-y-4">
+            <form onSubmit={form.handleSubmit(() => { })} className="space-y-4">
               <FormField
                 control={form.control}
                 name="email"

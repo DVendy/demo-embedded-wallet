@@ -116,15 +116,15 @@ const AuthContext = createContext<{
   logout: () => Promise<void>
 }>({
   state: initialState,
-  initEmailLogin: async () => {},
-  completeEmailAuth: async () => {},
-  loginWithPasskey: async () => {},
-  loginWithWallet: async () => {},
-  loginWithOAuth: async () => {},
-  loginWithGoogle: async () => {},
-  loginWithApple: async () => {},
-  loginWithFacebook: async () => {},
-  logout: async () => {},
+  initEmailLogin: async () => { },
+  completeEmailAuth: async () => { },
+  loginWithPasskey: async () => { },
+  loginWithWallet: async () => { },
+  loginWithOAuth: async () => { },
+  loginWithGoogle: async () => { },
+  loginWithApple: async () => { },
+  loginWithFacebook: async () => { },
+  logout: async () => { },
 })
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {

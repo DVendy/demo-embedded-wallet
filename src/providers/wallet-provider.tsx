@@ -41,13 +41,13 @@ type Action =
 
 const WalletsContext = createContext<
   | {
-      state: WalletsState
-      dispatch: React.Dispatch<Action>
-      newWallet: (walletName?: string) => Promise<void>
-      newWalletAccount: () => Promise<void>
-      selectWallet: (wallet: Wallet) => void
-      selectAccount: (account: Account) => void
-    }
+    state: WalletsState
+    dispatch: React.Dispatch<Action>
+    newWallet: (walletName?: string) => Promise<void>
+    newWalletAccount: () => Promise<void>
+    selectWallet: (wallet: Wallet) => void
+    selectAccount: (account: Account) => void
+  }
   | undefined
 >(undefined)
 
