@@ -61,6 +61,12 @@ function AuthContent() {
     }
   }, [searchParams])
 
+  const handleEmailLogin = async (email: Email) => {
+    setLoadingAction("email")
+    await initEmailLogin(email)
+    setLoadingAction(null)
+  }
+
   const handlePasskeyLogin = async (email: Email) => {
     setLoadingAction("passkey")
     if (!passkeyClient) {
@@ -69,12 +75,6 @@ function AuthContent() {
     }
 
     await loginWithPasskey(email)
-    setLoadingAction(null)
-  }
-
-  const handleEmailLogin = async (email: Email) => {
-    setLoadingAction("email")
-    await initEmailLogin(email)
     setLoadingAction(null)
   }
 
@@ -93,6 +93,18 @@ function AuthContent() {
             Log in or sign up
           </CardTitle>
         </CardHeader>
+        <LoadingButton
+          type="button"
+          variant="outline"
+          className="w-full font-semibold"
+          disabled={!form.formState.isValid}
+          onClick={() =>
+            handleEmailLogin(form.getValues().email as Email)
+          }
+          loading={state.loading && loadingAction === "email"}
+        >
+          Continue with email
+        </LoadingButton>
         <CardContent className="space-y-4">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(() => { })} className="space-y-4">
@@ -125,18 +137,6 @@ function AuthContent() {
                 Continue with passkey
               </LoadingButton>
 
-              <LoadingButton
-                type="button"
-                variant="outline"
-                className="w-full font-semibold"
-                disabled={!form.formState.isValid}
-                onClick={() =>
-                  handleEmailLogin(form.getValues().email as Email)
-                }
-                loading={state.loading && loadingAction === "email"}
-              >
-                Continue with email
-              </LoadingButton>
               <OrSeparator />
               <LoadingButton
                 type="button"
@@ -149,10 +149,10 @@ function AuthContent() {
               </LoadingButton>
             </form>
           </Form>
-          <OrSeparator />
           <GoogleAuth />
-          <AppleAuth />
+          <OrSeparator />
           <FacebookAuth />
+          <AppleAuth />
         </CardContent>
       </Card>
       <Legal />
